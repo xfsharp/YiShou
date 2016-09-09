@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+           style="@style/style_user_iv"/>
+
+        <EditText
+            android:id="@+id/et_user"
+            style="@style/style_user_et" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            style="@style/style_pwd_iv"/>
+
+        <EditText
+            android:id="@+id/et_pwd"
+            style="@style/style_pwd_et"/>
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <CheckBox
+            android:id="@+id/cb_rpwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/holo_orange_dark"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:text="@string/rm_pwd"/>
+
+        <CheckBox
+            android:id="@+id/cb_alogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:text="@string/auto_login"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/butt_login"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/butt_login"
+        android:textSize="20sp"
+        android:background="@android:color/holo_orange_light"/>
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forget_pwd"
+        android:textColor="@android:color/holo_green_light"
+        android:layout_gravity="right"/>
+</LinearLayout>

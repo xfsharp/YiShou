@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+    <!--显示用户信息-->
+    <LinearLayout
+        android:id="@+id/ll_user"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:gravity="bottom">
+
+        <ImageView
+            android:id="@+id/iv_user_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/user_img"/>
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="22sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@android:color/darker_gray"
+            android:text="点击登录"/>
+    </LinearLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_below="@id/ll_user"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            style="@style/style_menu"
+            android:text="@string/main_title_home"
+            android:textColor="@drawable/selector_textcolor"
+            android:drawableLeft="@drawable/selector_home"
+            android:checked="false" />
+        <View style="@style/style_liner_view"/>
+
+        <RadioButton
+            android:id="@+id/rb_account"
+            style="@style/style_menu"
+            android:text="@string/main_title_account"
+            android:textColor="@drawable/selector_textcolor"
+            android:drawableLeft="@drawable/selector_account"/>
+        <View style="@style/style_liner_view"/>
+
+        <RadioButton
+            android:id="@+id/rb_cart"
+            style="@style/style_menu"
+            android:text="@string/main_title_cart"
+            android:textColor="@drawable/selector_textcolor"
+            android:drawableLeft="@drawable/selector_cart"/>
+        <View style="@style/style_liner_view"/>
+
+        <RadioButton
+            android:id="@+id/rb_search"
+            style="@style/style_menu"
+            android:text="@string/main_title_search"
+            android:textColor="@drawable/selector_textcolor"
+            android:drawableLeft="@drawable/selector_search"/>
+        <View style="@style/style_liner_view"/>
+
+    </RadioGroup>
+</LinearLayout>

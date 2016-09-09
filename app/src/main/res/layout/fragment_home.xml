@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vp_hot"
+                android:layout_width="fill_parent"
+                android:layout_height="150dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/holo_orange_light">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/hotgoods_shape"
+                    android:text="@string/main_hotgoods"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
+
+            <GridView
+                android:layout_marginTop="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:numColumns="5"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@android:color/holo_orange_light">
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/hotgoods_shape"
+                    android:text="@string/main_goodslist"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"/>
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:layout_width="100dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/moregoods_shape"
+                    android:text="@string/main_moregoods"
+                    android:gravity="center"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/white"/>
+            </RelativeLayout>
+            
+            <ListView
+                android:id="@+id/lv_all_goods"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </ListView>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

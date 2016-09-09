@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/phone"/>
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/register_phone"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/holo_orange_dark" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@mipmap/phone"/>
+        <EditText
+            android:id="@+id/et_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="@string/register_msg"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/holo_orange_dark"/>
+        <TextView
+            android:id="@+id/tv_sms"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:onClick="sms_Click"
+            android:textColor="@android:color/holo_green_dark"
+            android:text="@string/register_msg_w"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/register_line"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:background="@android:color/holo_orange_dark"
+        android:paddingLeft="35dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <ImageView
+            style="@style/style_user_iv" />
+        <EditText
+            android:id="@+id/et_rgs_user"
+            style="@style/style_user_et" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <ImageView
+            style="@style/style_pwd_iv" />
+        <EditText
+            android:id="@+id/et_rgs_pwd"
+            style="@style/style_pwd_et" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+        <ImageView
+            style="@style/style_cpwd_iv"/>
+        <EditText
+            android:id="@+id/et_okpwd"
+            style="@style/style_cpwd_et"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/butt_register_up"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_up"
+        android:onClick="sms_Click"
+        android:textSize="25sp"
+        android:background="@drawable/shape"/>
+
+</LinearLayout>
