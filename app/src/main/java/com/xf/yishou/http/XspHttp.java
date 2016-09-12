@@ -4,6 +4,7 @@ package com.xf.yishou.http;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -81,10 +82,10 @@ public class XspHttp {
 
         public HttpRunnable(String url, String method, Map<String, String> map , int key) {
             super();
+            this.key = key;
             this.url = url;
             this.method = method;
             this.map = map;
-            this.key = key;
         }
 
         @Override
@@ -133,13 +134,15 @@ public class XspHttp {
                     while((line = br.readLine()) != null){
                         result.append(line);
                     }
-                    msg.obj = result;
+                    msg.obj = result.toString();
                 }else {
-                    msg.obj = "请求失败,返回码"+ code;
+                    msg.obj = null;
+                    Log.d("xsp", "请求失败:返回码："+code);
                 }
             }catch (Exception e) {
                 e.printStackTrace();
-                msg.obj = "请求失败" + e.toString();
+                msg.obj = null;
+                Log.d("xsp", "请求失败:返回码："+e.toString());
             }finally {
                 try {
                     mHandler.sendMessage(msg);
@@ -218,7 +221,7 @@ public class XspHttp {
     /**
      * 消息发送方法
      * */
-    private void sendMsg(String result){
+    private void sendMsg(String result) {
         Message msg = Message.obtain();
         msg.what = WHAT;
         msg.obj = result;
@@ -228,19 +231,20 @@ public class XspHttp {
     /**
      * 回调消息
      * */
-    private Handler mHandler = new Handler() {
-        public void handleMessage(Message msg){
-            switch (msg.what){
+    private	Handler mHandler = new Handler(){
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
                 case WHAT:
                     OnCompleteListener mListener = listenerMap.get(msg.arg1);
-                    if(mListener != null){
+                    if(mListener != null){// 请求结束,收到消息后调用回调函数
                         mListener.onComplete(msg.obj.toString());
                     }
                     break;
+
                 default:
                     break;
             }
-        }
+        };
     };
 
     public void clearRequest(){

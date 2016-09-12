@@ -134,6 +134,7 @@ public class Fragment_Login extends Fragment{
         sf = getContext().getSharedPreferences("user_info" , Activity.MODE_PRIVATE);
         sfe = sf.edit();
         sfe.clear();
+        sfe.commit();
         Log.d("xsp" , "删除成功");
     }
 
