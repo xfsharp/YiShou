@@ -9,6 +9,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".activity.MainActivity"
     android:background="@android:color/white"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
     android:id="@+id/slid_pane">
 
     <!--菜单界面容器-->
