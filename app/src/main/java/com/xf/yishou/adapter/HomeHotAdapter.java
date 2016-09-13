@@ -9,10 +9,10 @@ import java.util.List;
 /**
  * Created by xsp on 2016/9/6.
  */
-public class Adapter_Home_Hot extends FragmentPagerAdapter {
+public class HomeHotAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mFragments;
-    public Adapter_Home_Hot(FragmentManager fm , List<Fragment> mFragments) {
+    public HomeHotAdapter(FragmentManager fm , List<Fragment> mFragments) {
         super(fm);
         this.mFragments = mFragments;
     }

@@ -16,7 +16,6 @@
         android:id="@+id/ll_login"
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:background="@android:color/holo_green_light"
         android:orientation="horizontal">
 
         <LinearLayout

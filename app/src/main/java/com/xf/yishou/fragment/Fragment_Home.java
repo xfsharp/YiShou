@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xf.yishou.R;
-import com.xf.yishou.adapter.Adapter_Home_Hot;
+import com.xf.yishou.adapter.HomeHotAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +40,7 @@ public class Fragment_Home extends Fragment{
         fragmentList.add(new Fragment_Hot_02());
         fragmentList.add(new Fragment_Hot_03());
 
-        Adapter_Home_Hot hotAdapter = new Adapter_Home_Hot(getFragmentManager(),fragmentList);
+        HomeHotAdapter hotAdapter = new HomeHotAdapter(getFragmentManager(),fragmentList);
 
         viewPager = (ViewPager)view.findViewById(R.id.vp_hot);
         viewPager.setAdapter(hotAdapter);

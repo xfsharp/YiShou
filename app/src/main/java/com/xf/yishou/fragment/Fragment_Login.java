@@ -52,13 +52,19 @@ public class Fragment_Login extends Fragment{
 
     @Override
     public void onDestroyView() {
-        boolean checked = cb_rpwd.isChecked();
-        if(checked){
-            sf = getContext().getSharedPreferences("user_xml" , Activity.MODE_PRIVATE);
-            sfe = sf.edit();
-            sfe.putBoolean("rpwd_checked" , checked);
-            sfe.commit();
+
+        if (et_user.getText().equals("") || et_pwd.getText().equals("") ){
+            cb_alogin.setChecked(false);
+            cb_rpwd.setChecked(false);
         }
+//        boolean checked = cb_rpwd.isChecked();
+//        if(checked){
+//            sf = getContext().getSharedPreferences("user_xml" , Activity.MODE_PRIVATE);
+//            sfe = sf.edit();
+//            sfe.putBoolean("rpwd_checked" , checked);
+//            sfe.commit();
+//        }
+
         super.onDestroyView();
     }
 

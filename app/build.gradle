@@ -21,7 +21,7 @@ android {
 
 repositories{
     flatDir{
-        dirs'D:\\class8_android_Project\\My_Project\\YiShou\\app\\libs'
+        dirs'E:\\MyProject\\YiShou\\app\\libs'
     }
 }
 

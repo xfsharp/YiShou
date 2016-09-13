@@ -39,8 +39,8 @@
     <style name="style_login_title">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">@android:color/holo_orange_light</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/darker_gray</item>
     </style>
 
     <!--输入用户名-->
