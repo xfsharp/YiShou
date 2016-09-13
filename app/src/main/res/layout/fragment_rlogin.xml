@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/login_background">
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:text="欢迎来到登录界面"/>
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_gravity="center"
+        android:layout_width="60dp"
+        android:layout_height="1dp"
+        android:background="@android:color/white"/>
+
+    <ImageView
+        android:layout_marginTop="50dp"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/login_image_location"
+        android:scaleType="centerInside"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_marginTop="50dp"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_edit"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_width="35dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:src="@mipmap/login_emil"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_marginLeft="5dp"
+            android:hint="@string/user_login"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/shape_edit"
+        android:layout_gravity="center">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/login_pwd"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_marginLeft="5dp"
+            android:hint="@string/user_pwd"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="20dp"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/shape"
+        android:textSize="20sp"
+        android:text="@string/butt_login"/>
+
+    <LinearLayout
+        android:layout_width="260dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forget_pwd"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_user"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

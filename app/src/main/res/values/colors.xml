@@ -13,4 +13,11 @@
     <color name="light_red_bg">#FF00FF</color>
     <color name="child_pressed">#b19a72</color>
     <color name="child_unpressed">#bebabe</color>
+
+    <color name="login_background">#333542</color>
+    <color name="login_input">#474955</color>
+    <color name="butt_background">#0bd38a</color>
+
+    <color name="self_color_checked">#7c1121</color>
+    <color name="self_color_unchecked">#d7d3d3</color>
 </resources>

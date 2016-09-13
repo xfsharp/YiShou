@@ -8,6 +8,7 @@
     <string name="title_login">登录</string>
     <string name="title_register">注册</string>
 
+
     <!--登录-->
     <string name="user_login">请输入用户名</string>
     <string name="user_pwd">请输6到16位密码</string>
@@ -16,6 +17,7 @@
     <string name="butt_login">登录</string>
     <string name="forget_pwd">忘记密码？</string>
     <string name="back">返回</string>
+    <string name="new_user">新用户？点击注册</string>
 
     <!--注册-->
     <string name="register_phone">请输入手机号</string>

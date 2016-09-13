@@ -12,6 +12,7 @@ import android.widget.RadioButton;
 import com.xf.yishou.R;
 import com.xf.yishou.activity.LoginActivity;
 import com.xf.yishou.activity.MainActivity;
+import com.xf.yishou.activity.RLoginActivity;
 
 /**
  * Created by xsp on 2016/9/1.
@@ -99,7 +100,8 @@ public class Fragment_Menu extends Fragment implements View.OnClickListener{
                 break;
             case R.id.ll_user:
                 Intent intent = new Intent();
-                intent.setClass(getContext(), LoginActivity.class);
+                //intent.setClass(getContext(), LoginActivity.class);
+                intent.setClass(getContext(), RLoginActivity.class);
                 startActivity(intent);
         }
 
