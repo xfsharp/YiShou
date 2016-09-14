@@ -37,7 +37,8 @@
                     android:textColor="@android:color/white"/>
             </LinearLayout>
 
-            <GridView
+            <com.xf.yishou.views.NoScrollGridView
+                android:id="@+id/gv_hot_goods"
                 android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -67,11 +68,11 @@
                     android:textColor="@android:color/white"/>
             </RelativeLayout>
             
-            <ListView
+            <com.xf.yishou.views.NoScrollListView
                 android:id="@+id/lv_all_goods"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </ListView>
+            </com.xf.yishou.views.NoScrollListView>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

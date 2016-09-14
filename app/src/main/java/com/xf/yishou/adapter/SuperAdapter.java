@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by xsp on 2016/9/12.
  */
-public abstract class SuperAdapter extends BaseAdapter{
+public abstract class SuperAdapter<T> extends BaseAdapter{
     private List model;
     private LayoutInflater inflater;
 

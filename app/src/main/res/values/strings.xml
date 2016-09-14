@@ -39,10 +39,19 @@
         <item>@string/main_title_account</item>
         <item>@string/main_title_cart</item>
         <item>@string/main_title_search</item>
-
     </string-array>
+
     <!--登录标题-->
     <string name="title_activity_login">登录界面</string>
+
+    <!--商品展示列表-->
+    <string name="goods_list_price">价格</string>
+    <string name="goods_list_hot">人气</string>
+    <string name="goods_list_new">最新</string>
+    <string name="goods_list_sales">销量</string>
+
+    <string name="nothing">未获取到数据</string>
+
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

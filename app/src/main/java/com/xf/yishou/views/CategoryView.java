@@ -1,6 +1,7 @@
 package com.xf.yishou.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -16,10 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xf.yishou.R;
+import com.xf.yishou.activity.GoodsListActivity;
 import com.xf.yishou.adapter.GridChildAdapter;
 import com.xf.yishou.entity.Category;
 import java.util.List;
-import java.util.zip.Inflater;
 
 /**
  * Created by xsp on 2016/9/12.
@@ -36,7 +37,7 @@ public class CategoryView extends ScrollView{
     private Animation closeAnim;
     private Animation openAnim;
 
-    private int lastPosition;
+    private int lastPosition = -1;
     private View lastView;
 
     public CategoryView(Context context, AttributeSet attrs) {
@@ -71,7 +72,7 @@ public class CategoryView extends ScrollView{
                 iv_left.setImageResource(imgId);
             }else {
                 //随便选的一个
-                iv_left.setImageResource(R.drawable.smssdk_country_group_scroll_down);
+                iv_left.setImageResource(R.drawable.smssdk_sharesdk_icon);
             }
 
             //设置分类文字
@@ -122,6 +123,9 @@ public class CategoryView extends ScrollView{
                     Category.Secondary secondary = (Category.Secondary) parent.getItemAtPosition(position);
                     String childName = secondary.getSortname();
                     Toast.makeText(getContext() , "选中的是：" + childName , Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent();
+                    intent.setClass(getContext() , GoodsListActivity.class);
+                    getContext().startActivity(intent);
                 }
             });
 
