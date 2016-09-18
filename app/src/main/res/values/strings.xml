@@ -6,6 +6,7 @@
     <string name="main_title_search">分类商品</string>
 
     <string name="title_login">登录</string>
+    <string name="title_unlogin">未登录</string>
     <string name="title_register">注册</string>
 
 
@@ -51,6 +52,8 @@
     <string name="goods_list_sales">销量</string>
 
     <string name="nothing">未获取到数据</string>
+
+
 
 
     <!-- Strings related to login -->

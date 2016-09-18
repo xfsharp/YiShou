@@ -122,10 +122,12 @@ public class CategoryView extends ScrollView{
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Category.Secondary secondary = (Category.Secondary) parent.getItemAtPosition(position);
                     String childName = secondary.getSortname();
-                    Toast.makeText(getContext() , "选中的是：" + childName , Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent();
                     intent.setClass(getContext() , GoodsListActivity.class);
+                    intent.putExtra("type" , "分类查询");
+                    intent.putExtra("conditions" , childName);
                     getContext().startActivity(intent);
+                    Toast.makeText(getContext() , "选中的是：" + childName , Toast.LENGTH_SHORT).show();
                 }
             });
 

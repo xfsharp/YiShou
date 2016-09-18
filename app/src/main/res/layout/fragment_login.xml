@@ -12,7 +12,6 @@
            style="@style/style_user_iv"/>
 
         <EditText
-            android:id="@+id/et_user"
             style="@style/style_user_et" />
     </LinearLayout>
 
@@ -26,7 +25,6 @@
             style="@style/style_pwd_iv"/>
 
         <EditText
-            android:id="@+id/et_pwd"
             style="@style/style_pwd_et"/>
     </LinearLayout>
 
@@ -37,7 +35,6 @@
         android:layout_marginTop="20dp">
 
         <CheckBox
-            android:id="@+id/cb_rpwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@android:color/holo_orange_dark"
@@ -46,7 +43,6 @@
             android:text="@string/rm_pwd"/>
 
         <CheckBox
-            android:id="@+id/cb_alogin"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@android:color/holo_orange_dark"
@@ -56,7 +52,6 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/butt_login"
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

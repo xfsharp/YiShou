@@ -5,7 +5,7 @@
     android:background="@color/login_background">
 
     <TextView
-        android:layout_marginTop="@dimen/y35"
+        android:layout_marginTop="@dimen/y30"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -20,7 +20,7 @@
         android:background="@android:color/white"/>
 
     <ImageView
-        android:layout_marginTop="@dimen/y35"
+        android:layout_marginTop="@dimen/y30"
         android:layout_width="@dimen/x200"
         android:layout_height="@dimen/y90"
         android:src="@mipmap/login_image_location"
@@ -28,7 +28,7 @@
         android:layout_gravity="center"/>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/y35"
+        android:layout_marginTop="@dimen/y30"
         android:layout_width="@dimen/x240"
         android:layout_height="@dimen/y30"
         android:orientation="horizontal"
@@ -44,6 +44,7 @@
             android:src="@mipmap/login_emil"/>
 
         <EditText
+            android:id="@+id/et_user"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
@@ -70,14 +71,17 @@
             android:src="@mipmap/login_pwd"/>
 
         <EditText
+            android:id="@+id/et_pwd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
             android:layout_marginLeft="5dp"
+            android:password="true"
             android:hint="@string/user_pwd"/>
     </LinearLayout>
 
     <Button
+        android:id="@+id/butt_login"
         android:layout_marginTop="@dimen/y16"
         android:layout_width="@dimen/x240"
         android:layout_height="@dimen/y30"
@@ -86,12 +90,38 @@
         android:textSize="20sp"
         android:text="@string/butt_login"/>
 
+    <RadioGroup
+        android:layout_width="@dimen/x240"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/y3"
+        android:layout_gravity="center">
+
+        <CheckBox
+            android:id="@+id/cb_rpwd"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/login_input"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:text="@string/rm_pwd"/>
+
+        <CheckBox
+            android:id="@+id/cb_alogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/login_input"
+            android:textSize="15sp"
+            android:layout_weight="1"
+            android:text="@string/auto_login"/>
+    </RadioGroup>
+
     <LinearLayout
         android:layout_width="@dimen/x240"
         android:layout_height="@dimen/y10"
         android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/y35">
+        android:layout_marginTop="@dimen/y25">
 
         <TextView
             android:layout_weight="1"
@@ -101,9 +131,9 @@
             />
 
         <TextView
+            android:id="@+id/tv_register_butt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/new_user"/>
-
     </LinearLayout>
 </LinearLayout>

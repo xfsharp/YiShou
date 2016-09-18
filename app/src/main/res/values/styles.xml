@@ -110,6 +110,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center</item>
+        <item name="android:onClick">sortClick</item>
     </style>
 
     <!--商品展示界面TextView-->

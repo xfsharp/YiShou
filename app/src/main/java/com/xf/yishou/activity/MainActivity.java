@@ -1,5 +1,7 @@
 package com.xf.yishou.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -7,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -14,6 +17,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xf.yishou.R;
+import com.xf.yishou.application.MarketApp;
 import com.xf.yishou.fragment.Fragment_Account;
 import com.xf.yishou.fragment.Fragment_Cart;
 import com.xf.yishou.fragment.Fragment_Home;
@@ -35,6 +39,8 @@ public class MainActivity extends FragmentActivity {
 
     private Fragment_Menu frags_menu;
 
+    public TextView tv_unlogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +53,22 @@ public class MainActivity extends FragmentActivity {
         initView();
         initSetting();
         initFrag();
+        setListener();
+    }
+
+
+    /**
+     * 监听TextView事件
+     * */
+    private void setListener() {
+        tv_unlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this , RLoginActivity.class);
+                startActivityForResult(intent , 1);
+            }
+        });
     }
 
     /**
@@ -99,6 +121,7 @@ public class MainActivity extends FragmentActivity {
         iv_menu_open = (ImageView) findViewById(R.id.iv_menu_open);
         tv_page_tiele = (TextView) findViewById(R.id.tv_page_tiele);
 
+        tv_unlogin = (TextView) findViewById(R.id.tv_unlogin);
     }
 
     /**
@@ -172,5 +195,15 @@ public class MainActivity extends FragmentActivity {
      */
     public void closePane() {
         slid_pane.closePane();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK){
+            tv_unlogin.setText(MarketApp.user.getUserName());
+            frags_menu.tv_user_name.setText(MarketApp.user.getUserName() + "，欢迎回来");
+            Log.d("xsp" , "登录成功....");
+        }
     }
 }

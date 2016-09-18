@@ -1,5 +1,6 @@
 package com.xf.yishou.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -9,10 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.TextView;
+
 import com.xf.yishou.R;
 import com.xf.yishou.activity.LoginActivity;
 import com.xf.yishou.activity.MainActivity;
 import com.xf.yishou.activity.RLoginActivity;
+import com.xf.yishou.application.MarketApp;
 
 /**
  * Created by xsp on 2016/9/1.
@@ -32,6 +36,8 @@ public class Fragment_Menu extends Fragment implements View.OnClickListener{
     private LinearLayout ll_user;
 
     private String[] arr_title;
+
+    public TextView tv_user_name;
 
 
     @Override
@@ -77,6 +83,7 @@ public class Fragment_Menu extends Fragment implements View.OnClickListener{
         rb_cart = (RadioButton) view.findViewById(R.id.rb_cart);
         rb_search = (RadioButton) view.findViewById(R.id.rb_search);
         ll_user = (LinearLayout)view.findViewById(R.id.ll_user);
+        tv_user_name = (TextView) view.findViewById(R.id.tv_user_name);
     }
 
 
@@ -102,7 +109,7 @@ public class Fragment_Menu extends Fragment implements View.OnClickListener{
                 Intent intent = new Intent();
                 //intent.setClass(getContext(), LoginActivity.class);
                 intent.setClass(getContext(), RLoginActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent , 1);
         }
 
         if(v instanceof RadioButton){

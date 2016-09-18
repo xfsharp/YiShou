@@ -10,7 +10,7 @@
 
     <!--登录和注册的容器-->
     <FrameLayout
-        android:id="@+id/fl_login"
+        android:id="@+id/fl_rlogin"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/iv_bg">
