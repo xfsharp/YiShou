@@ -2,6 +2,7 @@ package com.xf.yishou.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,14 +16,25 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.xf.yishou.R;
+import com.xf.yishou.Utils.UtilsURLPath;
 import com.xf.yishou.application.MarketApp;
+import com.xf.yishou.entity.LoginResult;
+import com.xf.yishou.entity.User;
 import com.xf.yishou.fragment.Fragment_Account;
 import com.xf.yishou.fragment.Fragment_Cart;
 import com.xf.yishou.fragment.Fragment_Home;
+import com.xf.yishou.fragment.Fragment_Login;
 import com.xf.yishou.fragment.Fragment_Menu;
 import com.xf.yishou.fragment.Fragment_Search;
+import com.xf.yishou.fragment.Fragment_UserInfo;
+import com.xf.yishou.http.XspHttp;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends FragmentActivity {
 
@@ -49,13 +61,57 @@ public class MainActivity extends FragmentActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
-
         initView();
-        initSetting();
         initFrag();
+        readXml();
+        initSetting();
         setListener();
     }
 
+    /**
+     * 检查是否自动登录
+     * */
+    private void readXml() {
+        boolean alogin_checked = getSharedPreferences("user_xml", MODE_PRIVATE).getBoolean("cb_alogin", false);
+        if (alogin_checked){
+            SharedPreferences sp = getSharedPreferences("user_info", MODE_PRIVATE);
+            String user_name = sp.getString("user_name", null);
+            String user_pwd = sp.getString("user_pwd", null);
+            Gson gson = new Gson();
+            User user = new User(user_name,user_pwd);
+            String json_user = gson.toJson(user);
+            Map<String , String> map = new HashMap();
+            map.put("user" , json_user);
+            String url = UtilsURLPath.userLogin;
+            XspHttp.newXspHttp().getHttpData(url ,"POST" , map , new XspHttp.OnCompleteListener() {
+                @Override
+                public void onComplete(String result) {
+                    Log.d("xsp" , result);
+                    if (result != null){
+                        LoginResult loginResult = new Gson().fromJson(result , LoginResult.class);
+                        User resultUser = loginResult.getUser();
+                        String type = loginResult.getType();
+                        if ("登录成功".equals(type)){
+                            MarketApp.user = resultUser;
+                            tv_unlogin.setText(MarketApp.user.getUserName());
+                            frags_menu.tv_user_name.setText(MarketApp.user.getUserName() + "，欢迎回来");
+                        }
+
+                    }
+                }
+            });
+        }else {
+            Toast.makeText(getApplicationContext() , "您未登录，请登录"  , Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (MarketApp.user != null){
+            MarketApp.user = null;
+        }
+    }
 
     /**
      * 监听TextView事件
@@ -200,10 +256,15 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == Activity.RESULT_OK){
-            tv_unlogin.setText(MarketApp.user.getUserName());
-            frags_menu.tv_user_name.setText(MarketApp.user.getUserName() + "，欢迎回来");
-            Log.d("xsp" , "登录成功....");
+            if(MarketApp.user != null){
+                tv_unlogin.setText(MarketApp.user.getUserName());
+                frags_menu.tv_user_name.setText(MarketApp.user.getUserName() + "，欢迎回来");
+            } else if (MarketApp.user == null ){
+                tv_unlogin.setText("未登录");
+                frags_menu.tv_user_name.setText("点击登录");
+            }
         }
     }
 }

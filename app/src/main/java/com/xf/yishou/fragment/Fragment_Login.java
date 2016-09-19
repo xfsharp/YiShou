@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,8 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.xf.yishou.R;
@@ -37,6 +41,9 @@ public class Fragment_Login extends Fragment{
     private CheckBox cb_alogin;
     private Button butt_login;
 
+    private TextView tv_fpwd;
+    private TextView tv_register;
+
     private SharedPreferences sf;
     private SharedPreferences.Editor sfe;
 
@@ -48,9 +55,31 @@ public class Fragment_Login extends Fragment{
         readXml();
         setLoginListener();
         setCheckBoxListener();
+        setRegisterAndForgetListener();
         return view;
     }
 
+    /**
+     * 设置忘记密码和注册TextView的监听
+     * */
+    private void setRegisterAndForgetListener() {
+        //注册按钮的监听
+        tv_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Log.d("xsp" , "跳转到注册界面");
+                getFragmentManager().beginTransaction().replace(R.id.fl_rlogin , new Fragment_Register()).commit();
+            }
+        });
+
+        //忘记密码的监听
+        tv_fpwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext() , "此功能暂未开通,敬请期待" , Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
     @Override
@@ -184,7 +213,7 @@ public class Fragment_Login extends Fragment{
     /**
      * 登录方法
      * */
-    private void login(String user_name , String user_pwd){
+    public void login(String user_name , String user_pwd){
         //将数据获取到的用户数据封装为Json数据
         Gson gson = new Gson();
         User user = new User(user_name,user_pwd);
@@ -193,7 +222,6 @@ public class Fragment_Login extends Fragment{
 
         Map<String , String> map = new HashMap();
         map.put("user" , json_user);
-
 
         //将数据发送到服务端，将接收到的结果发送出去
         String url = UtilsURLPath.userLogin;
@@ -213,8 +241,12 @@ public class Fragment_Login extends Fragment{
                         MarketApp.user = resultUser;
                         Intent intent = new Intent();
                         getActivity().setResult(Activity.RESULT_OK , intent);
-                        getActivity().finish();
+                        getActivity().getSupportFragmentManager().beginTransaction().
+                                setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+                        getActivity().getSupportFragmentManager().beginTransaction().
+                                replace(R.id.fl_rlogin , new Fragment_UserInfo()).commit();
                     }
+
                 }
             }
         });
@@ -229,5 +261,8 @@ public class Fragment_Login extends Fragment{
         cb_rpwd = (CheckBox) view.findViewById(R.id.cb_rpwd);
         cb_alogin = (CheckBox) view.findViewById(R.id.cb_alogin);
         butt_login = (Button) view.findViewById(R.id.butt_login);
+        tv_fpwd = (TextView) view.findViewById(R.id.tv_fpwd);
+        tv_register = (TextView) view.findViewById(R.id.tv_register);
     }
+
 }

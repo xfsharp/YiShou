@@ -50,9 +50,14 @@
     <string name="goods_list_hot">人气</string>
     <string name="goods_list_new">最新</string>
     <string name="goods_list_sales">销量</string>
-
     <string name="nothing">未获取到数据</string>
 
+    <!--用户信息界面-->
+    <string name="info_user_name">用户姓名</string>
+    <string name="info_user_location">用户地址</string>
+    <string name="info_user_self">个性前面</string>
+    <string name="info_fixinfo">编辑资料</string>
+    <string name="info_exitlogin">退出登录</string>
 
 
 

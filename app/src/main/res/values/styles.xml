@@ -14,7 +14,7 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <!--菜单-->
+    <!--主菜单-->
     <style name="style_menu">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -138,6 +138,26 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:onClick">rb_sort</item>
+    </style>
+
+    <!--用户信息菜单栏-->
+    <style name="style_menu_info">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:drawableRight">@mipmap/setting_item_rightimg</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:onClick">rb_butt</item>
+    </style>
+
+    <!--用户信息界面按钮-->
+    <style name="style_butt_info">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:onClick">butt_info</item>
     </style>
 
 

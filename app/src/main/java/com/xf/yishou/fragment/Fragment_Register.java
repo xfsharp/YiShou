@@ -281,4 +281,5 @@ public class Fragment_Register extends Fragment{
             }
         }
     };
+
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/login_input">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <RelativeLayout
+                android:id="@+id/rl_info"
+                android:layout_below="@id/iv_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+            </RelativeLayout>
+            <ImageView
+                android:id="@+id/iv_user_img_info"
+                android:layout_marginTop="150dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/user_img"/>
+            <TextView
+                android:id="@+id/tv_user_name_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_user_img_info"
+                android:text="@string/info_user_name"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="2dp"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/tv_user_self"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_user_name_info"
+                android:layout_centerHorizontal="true"
+                android:text="@string/info_user_self"/>
+            <TextView
+                android:id="@+id/tv_user_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tv_user_self"
+                android:text="@string/info_user_location"
+                android:layout_margin="2dp"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/rl_info"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:background="@color/login_input">
+                <View style="@style/style_liner_view_horizontal"/>
+                <RadioButton
+                    android:id="@+id/rb_home"
+                    style="@style/style_menu_info"
+                    android:text="@string/main_title_home"
+                    android:textColor="@drawable/selector_textcolor"
+                    android:drawableLeft="@drawable/selector_home"
+                    android:checked="false" />
+                <View style="@style/style_liner_view_horizontal"/>
+                <RadioButton
+                    android:id="@+id/rb_account"
+                    style="@style/style_menu_info"
+                    android:text="@string/main_title_account"
+                    android:textColor="@drawable/selector_textcolor"
+                    android:drawableLeft="@drawable/selector_account"/>
+                <View style="@style/style_liner_view_horizontal"/>
+                <RadioButton
+                    android:id="@+id/rb_cart"
+                    style="@style/style_menu_info"
+                    android:text="@string/main_title_cart"
+                    android:textColor="@drawable/selector_textcolor"
+                    android:drawableLeft="@drawable/selector_cart"/>
+                <View style="@style/style_liner_view_horizontal"/>
+                <RadioButton
+                    android:id="@+id/rb_search"
+                    style="@style/style_menu_info"
+                    android:text="@string/main_title_search"
+                    android:textColor="@drawable/selector_textcolor"
+                    android:drawableLeft="@drawable/selector_search"/>
+                <View style="@style/style_liner_view_horizontal"/>
+            </RadioGroup>
+        </RelativeLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="15"
+        android:gravity="center">
+        <Button
+            android:id="@+id/butt_info_fix"
+            style="@style/style_butt_info"
+            android:text="@string/info_fixinfo"/>
+        <Button
+            android:id="@+id/butt_info_exitlogin"
+            style="@style/style_butt_info"
+            android:text="@string/info_exitlogin"/>
+    </LinearLayout>
+</LinearLayout>
