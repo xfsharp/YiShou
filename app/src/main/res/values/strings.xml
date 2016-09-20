@@ -61,14 +61,14 @@
 
     <!--上传界面-->
     <string name="up_photo">来个照片呗</string>
-    
+
     <!--商品发布界面-->
     <string name="play_camera_up">拍照上传</string>
     <string name="play_photo_up">相册选取</string>
     <string name="cancel_up">取消上传</string>
     <string name="publishcart">确认上传</string>
     <string name="cancelcart">取消上传</string>
-
+    <string name="enter">确定</string>
 
 
     <!-- Strings related to login -->

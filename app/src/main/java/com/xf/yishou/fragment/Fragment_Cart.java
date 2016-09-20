@@ -213,11 +213,11 @@ public class Fragment_Cart extends Fragment{
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
         // 裁剪框的比例，1：1
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
+        intent.putExtra("aspectX", 16);
+        intent.putExtra("aspectY", 9);
         // 裁剪后输出图片的尺寸大小
-        intent.putExtra("outputX", 250);
-        intent.putExtra("outputY", 250);
+        intent.putExtra("outputX", 320);
+        intent.putExtra("outputY", 180);
 
         intent.putExtra("outputFormat", "JPEG");// 图片格式
         intent.putExtra("return-data", true);

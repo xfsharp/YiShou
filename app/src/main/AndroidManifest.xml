@@ -38,7 +38,8 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".activity.RLoginActivity" />
-        <activity android:name=".activity.GoodsListActivity"></activity>
+        <activity android:name=".activity.GoodsListActivity" />
+        <activity android:name=".activity.AddPhotoActivity"></activity>
     </application>
 
 </manifest>
