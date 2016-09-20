@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|bottom"
+    android:background="@android:color/white"
+    >
+    <Button
+        android:id="@+id/butt_pop_camera_up"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_pop_btn"
+        android:text="@string/play_camera_up"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/butt_pop_photo_up"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_pop_btn"
+        android:text="@string/play_photo_up"
+        android:textSize="20sp"/>
+    <Button
+        android:id="@+id/butt_pop_cancel_up"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_pop_btn_cancel"
+        android:text="@string/cancel_up"
+        android:textSize="20dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        />
+
+</LinearLayout>
