@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.xf.yishou.R;
+import com.xf.yishou.activity.AddPicActivity;
 import com.xf.yishou.application.MarketApp;
 import com.xf.yishou.contans.Contans;
 
@@ -46,8 +47,6 @@ public class Fragment_Cart extends Fragment{
     private PopupWindow popSelPic;
 
     private Intent intent;
-    private static final String TEMP_PHOTO_NAME = "temp_photo.jpg";
-    private File tempFile ;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -55,7 +54,6 @@ public class Fragment_Cart extends Fragment{
         view = inflater.inflate(R.layout.fragment_cart,container,false);
         initView();
         setListener();
-
         return view;
     }
 
@@ -67,38 +65,6 @@ public class Fragment_Cart extends Fragment{
     public void onResume() {
         super.onResume();
         setShow();
-    }
-
-    /**
-     *  启动了其他Activity后, 回到该界面时调用
-     * */
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Contans.REQUESTCODE_TAKE_PICTURE){//拍照返回数据
-            if (hasSdcard()){
-                crop(Uri.fromFile(tempFile));
-            }else{
-                Toast.makeText(getActivity() , "未找到SD卡，不能储存图片"  , Toast.LENGTH_LONG).show();
-            }
-        } else if (requestCode == Contans.REQUESTCODE_ACCESS_ABLUM){//相册获取数据
-            if (data != null){
-                Uri uri = data.getData();
-                crop(uri);
-            }
-        }else if (requestCode == Contans.REQUESTCODE_CROP_CUT){//裁剪图片后的数据
-            if (data != null){
-                Bitmap bitmap = data.getParcelableExtra("data");
-                if (bitmap != null){
-                    iv_cart_temp.setImageBitmap(bitmap);
-                }
-            }   try {
-                 tempFile.delete();
-            }   catch (Exception e){
-                e.printStackTrace();
-            }
-        }
-
     }
 
     /**
@@ -156,14 +122,9 @@ public class Fragment_Cart extends Fragment{
             public void onClick(View v) {
                 cancelAnim();
                 intent = new Intent();
-                intent.setAction("android.media.action.IMAGE_CAPTURE");
-                intent.addCategory("android.intent.category.DEFAULT");
-                if (hasSdcard()){
-                    tempFile = new File(Environment.getExternalStorageDirectory() , TEMP_PHOTO_NAME);
-                    Uri uri = Uri.fromFile(tempFile);
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT , uri);
-                    startActivityForResult(intent , Contans.REQUESTCODE_TAKE_PICTURE);
-                }
+                intent.setClass(getActivity() , AddPicActivity.class);
+                intent.putExtra("selIndex", Contans.REQUESTCODE_TAKE_PICTURE);
+                startActivityForResult(intent , Contans.REQUESTCODE_TAKE_PICTURE);
             }
         });
 
@@ -172,8 +133,9 @@ public class Fragment_Cart extends Fragment{
             @Override
             public void onClick(View v) {
                 cancelAnim();
-                intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
+                intent = new Intent();
+                intent.setClass(getActivity() , AddPicActivity.class);
+                intent.putExtra("selIndex" , Contans.REQUESTCODE_ACCESS_ABLUM);
                 startActivityForResult(intent ,Contans.REQUESTCODE_ACCESS_ABLUM);
             }
         });
@@ -193,39 +155,6 @@ public class Fragment_Cart extends Fragment{
         popSelPic.showAtLocation(popSelView , Gravity.BOTTOM , 0 , 0);
 
     }
-
-    /**
-     * 判断是否存在SD卡
-     * */
-    private boolean hasSdcard() {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    /**
-     * 裁剪图片
-     * */
-    private void crop(Uri uri){
-        intent = new Intent("com.android.camera.action.CROP");
-        intent.setDataAndType(uri, "image/*");
-        intent.putExtra("crop", "true");
-        // 裁剪框的比例，1：1
-        intent.putExtra("aspectX", 16);
-        intent.putExtra("aspectY", 9);
-        // 裁剪后输出图片的尺寸大小
-        intent.putExtra("outputX", 320);
-        intent.putExtra("outputY", 180);
-
-        intent.putExtra("outputFormat", "JPEG");// 图片格式
-        intent.putExtra("return-data", true);
-        // 开启一个带有返回值的Activity，请求码为REQUESTCODE_CROP_CUT
-
-        startActivityForResult(intent, Contans.REQUESTCODE_CROP_CUT);
-    }
-
 
     /**
      * 取消动画
@@ -276,6 +205,5 @@ public class Fragment_Cart extends Fragment{
         iv_cart_temp = (ImageView) view.findViewById(R.id.iv_cart_temp);
         butt_cart_cancel = (Button) view.findViewById(R.id.butt_cart_cancel);
         butt_cart_publish = (Button) view.findViewById(R.id.butt_cart_publish);
-
     }
 }

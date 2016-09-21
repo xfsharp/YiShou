@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:weightSum="1">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,10 +101,11 @@
         android:id="@+id/butt_register_up"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="@string/register_up"
         android:onClick="sms_Click"
         android:textSize="25sp"
-        android:background="@drawable/shape"/>
+        android:background="@drawable/shape"
+        android:layout_weight="2.40" />
 
 </LinearLayout>

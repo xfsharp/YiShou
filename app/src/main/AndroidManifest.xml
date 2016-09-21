@@ -39,7 +39,7 @@
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".activity.RLoginActivity" />
         <activity android:name=".activity.GoodsListActivity" />
-        <activity android:name=".activity.AddPhotoActivity"></activity>
+        <activity android:name=".activity.AddPicActivity"></activity>
     </application>
 
 </manifest>

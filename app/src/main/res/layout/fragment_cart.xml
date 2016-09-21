@@ -57,6 +57,43 @@
                     android:textColor="@color/mycolor"/>
             </RelativeLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="标题"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/black"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="一句话描述一下宝贝吧"
+                    android:textColorHint="@android:color/darker_gray"
+                    android:background="@null"
+                    android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <View style="@style/style_liner_view_horizontal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:text="来个详细描述吧"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:textColor="@android:color/black"
+                android:background="@null"/>
+
+            <View style="@style/style_liner_view_horizontal"/>
+
+
         </LinearLayout>
     </ScrollView>
 
