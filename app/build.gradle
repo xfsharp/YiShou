@@ -17,13 +17,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets{
+        main{
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 repositories{
     flatDir{
-        dirs'E:\\MyProject\\YiShou\\app\\libs'
+        dirs'D:\\class8_android_Project\\My_Project\\YiShou\\app\\libs'
     }
 }
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -32,6 +39,7 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.2.1'
     compile 'com.google.code.gson:gson-parent:2.7'
     compile 'com.google.code.gson:gson:2.7'
-    compile name:'SMSSDK-2.1.1',ext:'aar'
-    compile name:'SMSSDKGUI-2.1.1',ext:'aar'
+    compile name: 'SMSSDK-2.1.1', ext: 'aar'
+    compile name: 'SMSSDKGUI-2.1.1', ext: 'aar'
+    compile files('libs/BaiduLBS_Android.jar')
 }

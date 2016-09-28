@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by bwfadmin on 2016/9/1.
+ * Created by xsp on 2016/9/1.
  */
 public class Fragment_Search extends Fragment{
     private List<Category> groupData = new ArrayList<>();

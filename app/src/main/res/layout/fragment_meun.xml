@@ -76,4 +76,29 @@
         <View style="@style/style_liner_view_horizontal"/>
 
     </RadioGroup>
+
+   <!-- <Button
+        android:id="@+id/butt_startservice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开启服务"/>
+    <Button
+        android:id="@+id/butt_stopservice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="停止服务"/>
+
+    <Button
+        android:id="@+id/bind_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="绑定Service" />
+
+    <Button
+        android:id="@+id/unbind_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="解除绑定Service"
+        />-->
+
 </LinearLayout>

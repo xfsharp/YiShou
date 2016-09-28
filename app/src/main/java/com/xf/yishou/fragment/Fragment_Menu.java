@@ -1,18 +1,25 @@
 package com.xf.yishou.fragment;
 
 import android.app.Activity;
+import android.app.Service;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.xf.yishou.R;
+import com.xf.yishou.Service.TestServices;
 import com.xf.yishou.activity.LoginActivity;
 import com.xf.yishou.activity.MainActivity;
 import com.xf.yishou.activity.RLoginActivity;
@@ -38,6 +45,25 @@ public class Fragment_Menu extends Fragment implements View.OnClickListener{
     private String[] arr_title;
 
     public TextView tv_user_name;
+
+//    private Button startService;
+//    private Button stopService;
+//    private Button bind_service;
+//    private Button unbind_service;
+
+
+    private ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            TestServices.MyBind myBind = (TestServices.MyBind) service;
+            myBind.down();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
 
 
     @Override
@@ -75,6 +101,37 @@ public class Fragment_Menu extends Fragment implements View.OnClickListener{
         rb_cart.setOnClickListener(this);
         rb_search.setOnClickListener(this);
         ll_user.setOnClickListener(this);
+
+//        startService.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity() , TestServices.class);
+//                getActivity().startService(intent);
+//            }
+//        });
+//
+//        stopService.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity() , TestServices.class);
+//                getActivity().stopService(intent);
+//            }
+//        });
+//
+//        bind_service.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity() , TestServices.class);
+//                getActivity().bindService(intent , connection , Context.BIND_ABOVE_CLIENT);
+//            }
+//        });
+//
+//        unbind_service.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getActivity().unbindService(connection);
+//            }
+//        });
     }
 
     private void initView() {
@@ -84,7 +141,14 @@ public class Fragment_Menu extends Fragment implements View.OnClickListener{
         rb_search = (RadioButton) view.findViewById(R.id.rb_search);
         ll_user = (LinearLayout)view.findViewById(R.id.ll_user);
         tv_user_name = (TextView) view.findViewById(R.id.tv_user_name);
+
+//        startService = (Button) view.findViewById(R.id.butt_startservice);
+//        stopService = (Button) view.findViewById(R.id.butt_stopservice);
+//        bind_service = (Button) view.findViewById(R.id.bind_service);
+//        unbind_service = (Button) view.findViewById(R.id.unbind_service);
     }
+
+
 
 
     /**

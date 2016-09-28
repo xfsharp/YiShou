@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 
@@ -13,6 +14,7 @@ import com.google.gson.Gson;
 import com.xf.yishou.R;
 import com.xf.yishou.Utils.UtilsURLPath;
 import com.xf.yishou.adapter.ListGoodsAdapter;
+import com.xf.yishou.application.MarketApp;
 import com.xf.yishou.entity.Goods;
 import com.xf.yishou.http.XspHttp;
 
@@ -23,12 +25,14 @@ import java.util.List;
 
 
 /**
- * Created by bwfadmin on 2016/9/1.
+ * Created by xsp on 2016/9/1.
  */
 public class Fragment_Account extends Fragment {
     private  RadioGroup mRgSelf;
     private ListView mLvSelf;
     private SwipeRefreshLayout mRefreshSelf;
+    private LinearLayout ll_acc_notlogin;
+    private View view;
 
     private ListGoodsAdapter adapter;
     private List<Goods> model = new ArrayList<>();
@@ -45,17 +49,19 @@ public class Fragment_Account extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_account, container, false);
-        //ButterKnife.bind(this, view);
-        mRgSelf = (RadioGroup) view.findViewById(R.id.rg_self);
-        mLvSelf = (ListView) view.findViewById(R.id.lv_self);
-        mRefreshSelf = (SwipeRefreshLayout) view.findViewById(R.id.refresh_self);
-
+        view = inflater.inflate(R.layout.fragment_account, container, false);
+        initView();
         this.inflater = inflater;
         initData();
         setListener();
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
     }
 
     /**
@@ -84,42 +90,47 @@ public class Fragment_Account extends Fragment {
         });
     }
 
-
     private void initData() {
-        XspHttp xspHttp = XspHttp.newXspHttp();
-        HashMap collectMap = new HashMap();
-        HashMap publishMap = new HashMap();
+        if(MarketApp.user != null){
+            XspHttp xspHttp = XspHttp.newXspHttp();
+            HashMap collectMap = new HashMap();
+            HashMap publishMap = new HashMap();
+            //请求商品的列表
+            String userName = MarketApp.user.getUserName();
+            collectMap.put("userName" , userName);
+            publishMap.put("type" , "2");
+            publishMap.put("conditions" , userName);
+            String collectUrl = UtilsURLPath.queryCollectList;
+            String publishUrl = UtilsURLPath.getGoodsPath;
 
-        //请求商品的列表
-        collectMap.put("userName" , "fhy");
+            String method = "POST";
 
-        publishMap.put("type" , "2");
-        publishMap.put("conditions" , "fhy");
-
-        String collectUrl = UtilsURLPath.queryCollectList;
-        String publishUrl = UtilsURLPath.getGoodsPath;
-
-        String method = "POST";
-
-        xspHttp.getHttpData(collectUrl, method, collectMap, new XspHttp.OnCompleteListener() {
-            @Override
-            public void onComplete(String result) {
-                showData(result , R.id.rb_collected);
-                isFirst = false;
-                if (!isFirst){
-                    mRefreshSelf.setRefreshing(isFirst);
+            xspHttp.getHttpData(collectUrl, method, collectMap, new XspHttp.OnCompleteListener() {
+                @Override
+                public void onComplete(String result) {
+                    showData(result , R.id.rb_collected);
+                    isFirst = false;
+                    if (!isFirst){
+                        mRefreshSelf.setRefreshing(isFirst);
+                    }
                 }
-            }
-        });
+            });
 
-        xspHttp.getHttpData(publishUrl, method, publishMap, new XspHttp.OnCompleteListener() {
-            @Override
-            public void onComplete(String result) {
-                showData(result , R.id.rb_published);
-                isFirst = false;
-            }
-        });
+            xspHttp.getHttpData(publishUrl, method, publishMap, new XspHttp.OnCompleteListener() {
+                @Override
+                public void onComplete(String result) {
+                    showData(result , R.id.rb_published);
+                    isFirst = false;
+                }
+            });
+            ll_acc_notlogin.setVisibility(View.GONE);
+            mRgSelf.setVisibility(View.VISIBLE);
+        }else {
+            ll_acc_notlogin.setVisibility(View.VISIBLE);
+            mRgSelf.setVisibility(View.GONE);
+        }
     }
+
 
     /**
      * 展示数据的方法
@@ -146,5 +157,15 @@ public class Fragment_Account extends Fragment {
             }
 
         }
+    }
+
+    /**
+     * 初始化控件
+     * */
+    private void initView() {
+        mRgSelf = (RadioGroup) view.findViewById(R.id.rg_self);
+        mLvSelf = (ListView) view.findViewById(R.id.lv_self);
+        mRefreshSelf = (SwipeRefreshLayout) view.findViewById(R.id.refresh_self);
+        ll_acc_notlogin = (LinearLayout) view.findViewById(R.id.ll_acc_notlogin);
     }
 }

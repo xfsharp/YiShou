@@ -5,9 +5,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.xf.yishou.R;
 import com.xf.yishou.adapter.GridAddPicAdapter;
+import com.xf.yishou.application.MarketApp;
 import com.xf.yishou.contans.Contans;
 
 import java.io.File;
@@ -25,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddPicActivity extends FragmentActivity {
-    private List<Bitmap> model;//M
+    private ArrayList<Bitmap> model;//M
     private GridView gv_publish;//V
     private GridAddPicAdapter gridAddPicAdapter;//C
     private Bitmap bitmap;
@@ -70,7 +73,7 @@ public class AddPicActivity extends FragmentActivity {
             }
         }else if (requestCode == Contans.REQUESTCODE_CROP_CUT){//裁剪图片后的数据
             if (data != null){
-                Bitmap bitmap = data.getParcelableExtra("data");
+                bitmap = data.getParcelableExtra("data");
                 if (bitmap != null){
                     model.add(model.size() -1 , bitmap);
                     gridAddPicAdapter.notifyDataSetChanged();
@@ -99,6 +102,7 @@ public class AddPicActivity extends FragmentActivity {
                         if (hasSdcard()){
                             tempFile = new File(Environment.getExternalStorageDirectory() , TEMP_PHOTO_NAME);
                             Uri uri = Uri.fromFile(tempFile);
+                            Log.d("xsp" , uri+"");
                             intent.putExtra(MediaStore.EXTRA_OUTPUT , uri);
                             startActivityForResult(intent , Contans.REQUESTCODE_TAKE_PICTURE);
                         }
@@ -117,7 +121,10 @@ public class AddPicActivity extends FragmentActivity {
         butt_publish_enter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent();
+                intent.putParcelableArrayListExtra("bitmap" , model);
+                setResult(1 , intent);
+                finish();
             }
         });
     }
@@ -190,11 +197,11 @@ public class AddPicActivity extends FragmentActivity {
         intent.setDataAndType(uri, "image/*");
         intent.putExtra("crop", "true");
         // 裁剪框的比例，1：1
-        intent.putExtra("aspectX", 16);
-        intent.putExtra("aspectY", 9);
+        intent.putExtra("aspectX", 2);
+        intent.putExtra("aspectY", 3);
         // 裁剪后输出图片的尺寸大小
-        intent.putExtra("outputX", 320);
-        intent.putExtra("outputY", 180);
+        intent.putExtra("outputX", 480);
+        intent.putExtra("outputY", 800);
 
         intent.putExtra("outputFormat", "JPEG");// 图片格式
         intent.putExtra("return-data", true);

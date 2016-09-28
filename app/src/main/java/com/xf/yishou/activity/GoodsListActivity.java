@@ -46,7 +46,8 @@ public class GoodsListActivity extends FragmentActivity {
 
     private Comparator<Goods> comparator;
 
-    private TextView[]  arrTv = new TextView[4];
+    private TextView[] arrTv = new TextView[4];
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,24 +62,24 @@ public class GoodsListActivity extends FragmentActivity {
         final Intent intent = getIntent();
         String name = intent.getStringExtra("conditions");
         HashMap map = new HashMap();
-        map.put("type" , "1");
-        map.put("conditions" , name);
+        map.put("type", "1");
+        map.put("conditions", name);
 
         XspHttp http = XspHttp.newXspHttp();
         http.getHttpData(UtilsURLPath.getGoodsPath, "POST", map, new XspHttp.OnCompleteListener() {
             @Override
             public void onComplete(String result) {
-                if (result != null){
-                    Goods[] arr = new Gson().fromJson(result , Goods[].class);
+                if (result != null) {
+                    Goods[] arr = new Gson().fromJson(result, Goods[].class);
                     model.addAll(Arrays.asList(arr));
                     comparator = new PriceAscComparator();
-                    Collections.sort(model , comparator);
+                    Collections.sort(model, comparator);
                     rg_price.check(R.id.rb_price_asc);
                     tv_sort_price.setTextColor(Color.RED);
-                    if (adapter == null){
-                        adapter = new ListGoodsAdapter(model , getLayoutInflater());
+                    if (adapter == null) {
+                        adapter = new ListGoodsAdapter(model, getLayoutInflater());
                         lv_goods_list.setAdapter(adapter);
-                    }else {
+                    } else {
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -88,7 +89,7 @@ public class GoodsListActivity extends FragmentActivity {
 
     /**
      * 初始化数组
-     * */
+     */
     private void initArr() {
         arrTv[0] = tv_sort_price;
         arrTv[1] = tv_sort_hot;
@@ -98,13 +99,14 @@ public class GoodsListActivity extends FragmentActivity {
 
     /**
      * 监听其他的排序
-     * */
+     */
     private int previous = 0;
     private boolean isAse = true;
-    public void sortClick(View v){
+
+    public void sortClick(View v) {
         arrTv[previous].setTextColor(Color.BLACK);
         int id = v.getId();
-        switch (id){
+        switch (id) {
             case R.id.ll_price:
                 isAse = !isAse;
                 previous = 0;
@@ -123,29 +125,29 @@ public class GoodsListActivity extends FragmentActivity {
                 break;
         }
 
-        if (previous == 0){
-            if (isAse){
+        if (previous == 0) {
+            if (isAse) {
                 comparator = new PriceAscComparator();
                 rg_price.check(R.id.rb_price_asc);
-            }else {
+            } else {
                 comparator = new PriceDescComparator();
                 rg_price.check(R.id.rb_price_desc);
             }
         }
 
-        if (previous != 0){
+        if (previous != 0) {
             rb_price_asc.setChecked(false);
             rb_price_desc.setChecked(false);
         }
         arrTv[previous].setTextColor(Color.RED);
 
-        Collections.sort(model , comparator);
+        Collections.sort(model, comparator);
         adapter.notifyDataSetChanged();
     }
 
     /**
      * 初始化控件
-     * */
+     */
     private void initView() {
         lv_goods_list = (ListView) findViewById(R.id.lv_goods_list);
         tv_empty_goods = (TextView) findViewById(R.id.tv_empty_goods);
