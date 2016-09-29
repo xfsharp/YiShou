@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.widget.TextViewCompat;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,7 +20,6 @@ import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.baidu.location.Address;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
@@ -32,7 +30,6 @@ import com.xf.yishou.R;
 import com.xf.yishou.Utils.UtilsURLPath;
 import com.xf.yishou.activity.AddPicActivity;
 import com.xf.yishou.application.MarketApp;
-import com.xf.yishou.baidumap.UtilsBaiduLocation;
 import com.xf.yishou.contans.Contans;
 import com.xf.yishou.entity.Goods;
 import com.xf.yishou.entity.User;
@@ -41,8 +38,6 @@ import com.xf.yishou.http.XspHttp;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -56,6 +51,7 @@ import java.util.List;
 public class Fragment_Cart extends Fragment{
     private View view;
     private LinearLayout ll_hint_login;
+    private LinearLayout ll_publish_butt;
     private RelativeLayout rl_publi;
     private ImageView iv_cart_camer;
     private View popSelView;
@@ -67,6 +63,7 @@ public class Fragment_Cart extends Fragment{
     private EditText et_buy_money;
     private EditText et_wantmoney;
     private TextView tv_now_location;
+
 
     private PopupWindow popSelPic;
 
@@ -93,8 +90,39 @@ public class Fragment_Cart extends Fragment{
         return view;
     }
 
-    private class MyLocationListener implements BDLocationListener{
+    /**
+     * 启动了其他Activity后, 回到该界面时调用
+     * */
+    @Override
+    public void onResume() {
+        super.onResume();
+        setShow();
+    }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1){
+            imageList = data.getParcelableArrayListExtra("bitmap");
+        }
+    }
+
+    /**
+     * 在该Fragment被hide或者show的时候调用
+     * */
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden){
+            setShow();
+        }
+    }
+
+    /**
+     * 地图回调接口
+     * */
+
+    private class MyLocationListener implements BDLocationListener{
         @Override
         public void onReceiveLocation(BDLocation location) {
             if (location != null){
@@ -159,9 +187,10 @@ public class Fragment_Cart extends Fragment{
                 tv_now_location.setText(mLocation);
             }
         }
+
+
+
     }
-
-
 
     private void initLocation() {
 
@@ -184,34 +213,6 @@ public class Fragment_Cart extends Fragment{
         option.setEnableSimulateGps(false);//可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
         mLocationClient.setLocOption(option);
         mLocationClient.start();
-    }
-
-    /**
-     * 启动了其他Activity后, 回到该界面时调用
-     * */
-    @Override
-    public void onResume() {
-        super.onResume();
-        setShow();
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1){
-            imageList = data.getParcelableArrayListExtra("bitmap");
-        }
-    }
-
-    /**
-     * 在该Fragment被hide或者show的时候调用
-     * */
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden){
-            setShow();
-        }
     }
 
     /**
@@ -373,11 +374,13 @@ public class Fragment_Cart extends Fragment{
         if (MarketApp.user != null){
             //登录成功
             rl_publi.setVisibility(view.VISIBLE);//显示
+            ll_publish_butt.setVisibility(view.VISIBLE);
             ll_hint_login.setVisibility(view.GONE);//隐藏
         }else {
             //未登录
             ll_hint_login.setVisibility(view.VISIBLE);
             rl_publi.setVisibility(view.GONE);
+            ll_publish_butt.setVisibility(view.GONE);
         }
     }
 
@@ -386,6 +389,7 @@ public class Fragment_Cart extends Fragment{
      * */
     private void initView() {
         ll_hint_login = (LinearLayout) view.findViewById(R.id.ll_hint_login);
+        ll_publish_butt = (LinearLayout) view.findViewById(R.id.ll_publish_butt);
         rl_publi = (RelativeLayout) view.findViewById(R.id.rl_publi);
         iv_cart_camer = (ImageView) view.findViewById(R.id.iv_cart_camer);
         iv_cart_temp = (ImageView) view.findViewById(R.id.iv_cart_temp);

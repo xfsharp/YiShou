@@ -1,17 +1,21 @@
 package com.xf.yishou.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.xf.yishou.R;
 import com.xf.yishou.Utils.UtilsURLPath;
+import com.xf.yishou.activity.GoodsInfoActivity;
 import com.xf.yishou.adapter.GridHotAdapter;
 import com.xf.yishou.adapter.HomeHotAdapter;
 import com.xf.yishou.adapter.ListGoodsAdapter;
@@ -73,8 +77,26 @@ public class Fragment_Home extends Fragment{
 
 
         initData();
+        setListener();
 
         return view;
+    }
+
+    /**
+     * 各种监听事件
+     * */
+    private void setListener() {
+        lv_all_goods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Goods goods = listModel.get(position);
+                Intent intent = new Intent(getActivity() , GoodsInfoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("goods" , goods);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -95,9 +117,7 @@ public class Fragment_Home extends Fragment{
                     //pagerModel = total.subList(0 , 5);
                     gridModel = total.subList(5 , 15);
                     listModel = total.subList(15 , total.size());
-
                     showData();
-
                 }
             }
         });
@@ -124,5 +144,4 @@ public class Fragment_Home extends Fragment{
             listAdapter.notifyDataSetChanged();
         }
     }
-
 }

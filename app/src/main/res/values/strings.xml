@@ -79,4 +79,8 @@
     <string name="my_loctation">我的位置</string>
     <string name="money">元</string>
 
+    <!--商品信息界面-->
+    <string name="goods_details">商品详情</string>
+    <string name="goods_collect">收藏商品</string>
+
 </resources>
