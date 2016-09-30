@@ -20,8 +20,6 @@ public class Fragment_Hot_01 extends Fragment{
     private View view;
     private ImageView iv_home_hot;
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 

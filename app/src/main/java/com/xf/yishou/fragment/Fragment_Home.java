@@ -32,7 +32,6 @@ import java.util.zip.Inflater;
  * Created by xsp on 2016/9/1.
  */
 public class Fragment_Home extends Fragment{
-
     private View view;
 
     private List<Fragment> fragmentList;
@@ -44,10 +43,13 @@ public class Fragment_Home extends Fragment{
 
     private ListGoodsAdapter listAdapter;
     private GridHotAdapter gridAdapter;
+    private HomeHotAdapter hotAdapter;
     private LayoutInflater inflater;
 
     private GridView gv_hot_goods;
     private ListView lv_all_goods;
+
+    int position = -1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,27 +62,57 @@ public class Fragment_Home extends Fragment{
          * */
         this.inflater = inflater;
         view = inflater.inflate(R.layout.fragment_home,container,false);
+        viewPager = (ViewPager)view.findViewById(R.id.vp_hot);
         lv_all_goods = (ListView) view.findViewById(R.id.lv_all_goods);
         gv_hot_goods = (GridView) view.findViewById(R.id.gv_hot_goods);
 
-
         fragmentList = new ArrayList<Fragment>();
-
         fragmentList.add(new Fragment_Hot_01());
         fragmentList.add(new Fragment_Hot_02());
         fragmentList.add(new Fragment_Hot_03());
-
-        HomeHotAdapter hotAdapter = new HomeHotAdapter(getFragmentManager(),fragmentList);
-
-        viewPager = (ViewPager)view.findViewById(R.id.vp_hot);
+        hotAdapter = new HomeHotAdapter(getFragmentManager(),fragmentList);
         viewPager.setAdapter(hotAdapter);
 
 
         initData();
         setListener();
-
+        setAutoViewPager();
         return view;
     }
+
+    @Override
+    public void onDestroy() {
+        th.interrupt();
+        super.onDestroy();
+    }
+
+    private void setAutoViewPager() {
+        th.start();
+    }
+
+    Thread th = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (true){
+                try {
+                    Thread.sleep(2000);
+                    if (position >= fragmentList.size()-1){
+                        position = -1;
+                    }
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            viewPager.setCurrentItem(++position);
+                        }
+                    });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        }
+    });
+
 
     /**
      * 各种监听事件
@@ -98,11 +130,12 @@ public class Fragment_Home extends Fragment{
             }
         });
     }
-
     /**
      * 加载总数据
      * */
     private void initData() {
+
+
         XspHttp http = XspHttp.newXspHttp();
         HashMap<String , String > map = new HashMap();
         map.put("type" , "0");

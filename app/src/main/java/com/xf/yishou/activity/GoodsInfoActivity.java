@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.xf.yishou.R;
 import com.xf.yishou.entity.Goods;
 
+import java.util.List;
+
 
 /**
  * Created by xsp on 2016/9/29.
@@ -31,6 +33,7 @@ public class GoodsInfoActivity extends FragmentActivity{
     private ViewPager vp_goods_info_image;
 
     private Goods goods;
+    private List<String> imagePath;
 
     private Intent intent;
     @Override
@@ -57,6 +60,10 @@ public class GoodsInfoActivity extends FragmentActivity{
         tv_goods_details_info.setText(goods.getGoodsinfo());
         tv_goods_publish_people.setText(goods.getgName());
         tv_goods_info_phone.setText(goods.getPhone());
+        imagePath = goods.getImagePath();
+        for (int i = 0 ; i <= imagePath.size() ;i++){
+
+        }
     }
 
     /**
