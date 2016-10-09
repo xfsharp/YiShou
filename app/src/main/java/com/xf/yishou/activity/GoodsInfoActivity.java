@@ -6,13 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.xf.yishou.R;
+import com.xf.yishou.adapter.ViewPagerAdapter;
 import com.xf.yishou.entity.Goods;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,6 +36,8 @@ public class GoodsInfoActivity extends FragmentActivity{
 
     private Goods goods;
     private List<String> imagePath;
+    private List<View> viewPagerModel = new ArrayList<View>();
+    private ViewPagerAdapter adapter;
 
     private Intent intent;
     @Override
@@ -41,6 +45,8 @@ public class GoodsInfoActivity extends FragmentActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_goodsinfo);
         initView();
+        addModel();
+        setAdapter();
         showData();
     }
 
@@ -60,10 +66,22 @@ public class GoodsInfoActivity extends FragmentActivity{
         tv_goods_details_info.setText(goods.getGoodsinfo());
         tv_goods_publish_people.setText(goods.getgName());
         tv_goods_info_phone.setText(goods.getPhone());
-        imagePath = goods.getImagePath();
-        for (int i = 0 ; i <= imagePath.size() ;i++){
+        vp_goods_info_image.setAdapter(adapter);
+    }
 
-        }
+    /**
+     * 设置适配器
+     * */
+    private void setAdapter() {
+        adapter = new ViewPagerAdapter(viewPagerModel);
+    }
+
+    /**
+     * 添加view视图
+     * */
+    private void addModel() {
+        LayoutInflater inflater = getLayoutInflater();
+        viewPagerModel.add(inflater.inflate(R.layout.item_vp_goodsinfo, null));
     }
 
     /**
@@ -80,6 +98,7 @@ public class GoodsInfoActivity extends FragmentActivity{
         tv_goods_publish_people = (TextView) findViewById(R.id.tv_goods_publish_people);
         tv_goods_info_phone = (TextView) findViewById(R.id.tv_goods_info_phone);
         vp_goods_info_image = (ViewPager) findViewById(R.id.vp_goods_info_image);
+
     }
 
     /**

@@ -86,6 +86,10 @@ public class Fragment_Home extends Fragment{
         super.onDestroy();
     }
 
+
+    /**
+     * 轮播效果
+     * */
     private void setAutoViewPager() {
         th.start();
     }
@@ -122,6 +126,18 @@ public class Fragment_Home extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Goods goods = listModel.get(position);
+                Intent intent = new Intent(getActivity() , GoodsInfoActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("goods" , goods);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        gv_hot_goods.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Goods goods = gridModel.get(position);
                 Intent intent = new Intent(getActivity() , GoodsInfoActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("goods" , goods);
